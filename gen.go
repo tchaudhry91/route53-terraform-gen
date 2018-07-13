@@ -8,6 +8,7 @@ import "io/ioutil"
 import "os"
 
 type Record struct {
+	Name   string `json:"name"`
 	Record string `json:"record"`
 	ZoneID string `json:"zone_id"`
 	TTL    string `json:"ttl"`
@@ -21,7 +22,7 @@ type Records struct {
 
 func getTempl() (*template.Template, error) {
 	baseTemplate :=
-		` resource "aws_route53_record" "{{.Record}}" {
+		` resource "aws_route53_record" "{{.Name}}" {
           zone_id = "{{.ZoneID}}"
           name    = "{{.Record}}"
           type    = "{{.Type}}"
